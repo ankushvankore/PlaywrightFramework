@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","7979","Remove Product Test","chromium","2026-10-01","passed","2026-10-01","","D03CartPage.spec.js","",""
+"","6269","Checkout Test","chromium","2026-10-01","passed","2026-10-01","","D03CartPage.spec.js","",""
+"","8164","Continue shopping Test","chromium","2026-10-01","passed","2026-10-01","","D03CartPage.spec.js","",""
+"","6897","Get Product name Test","chromium","2026-10-01","passed","2026-10-01","","D03CartPage.spec.js","",""

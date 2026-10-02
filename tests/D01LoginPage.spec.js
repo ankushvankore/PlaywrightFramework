@@ -1,0 +1,40 @@
+//import {test, expect} from "@playwright/test"
+import { LoginPage } from "../Pages/LoginPage"
+//Add this line later and also comment 1st line later after creating fixture
+import {test, expect} from "../Fixture/baseFixture.js"
+
+test("Test for login with valid credtionals", async({page})=>{
+    let l1 = new LoginPage(page);
+
+    l1.gotoLoginPage();
+    l1.directLogin("standard_user", "secret_sauce");
+    await page.waitForTimeout(2000);
+    expect (page).toHaveURL(/inventory/);
+
+    await page.waitForTimeout(2000);
+})
+
+test("Login test for blank user name and password", async({page})=>{
+    let l1 = new LoginPage(page);
+
+    l1.gotoLoginPage();
+    l1.directLogin("", "");
+    let message = await l1.getWarningMessage();
+    await expect (message).toContain("Epic sadface: Username is required");
+
+    await page.waitForTimeout(2000);
+})
+
+/*Now you can see some of the steps like open page and login are same for both the
+test cases
+so rather calling those every time lets create a fixtire
+bassfixtrue.js
+*/
+
+test("Test login with fixture", async({page, loginFixture})=>{
+    console.log("Test with fixtue get complited");
+
+    await page.waitForTimeout(2000);
+})
+
+//now lets create next page ie inventory page

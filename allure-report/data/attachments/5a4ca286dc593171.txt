@@ -1,0 +1,3 @@
+Product added to cart: Sauce Labs Fleece Jacket
+Product in Cart: Sauce Labs Fleece Jacket
+Removed Product is: Sauce Labs Fleece Jacket
