@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:LoginPage": "npx playwright test tests/D01LoginPage.spec.js --headed",
+    "allure:generate": "npx allure generate allure-results --clean -o allure-report",
+    "allure:showReport": "npx allure open allure-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

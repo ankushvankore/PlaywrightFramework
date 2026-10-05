@@ -1,0 +1,17 @@
+Data reading from CSV file...
+[
+  { 'import Papa from "papaparse"': 'import fs from "fs"' },
+  { 'import Papa from "papaparse"': '' },
+  { 'import Papa from "papaparse"': 'export function readCSVData(){' },
+  {
+    'import Papa from "papaparse"': '    const file = fs.readFileSync("./Utilities/ReadFromCSV.js"',
+    __parsed_extra: [ ' "utf-8");' ]
+  },
+  {
+    'import Papa from "papaparse"': '    const testData = Papa.parse(file',
+    __parsed_extra: [ ' {header: true});' ]
+  },
+  { 'import Papa from "papaparse"': '' },
+  { 'import Papa from "papaparse"': '    return testData.data;' },
+  { 'import Papa from "papaparse"': '}' }
+]

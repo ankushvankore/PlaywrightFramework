@@ -37,4 +37,5 @@ test("Overview Test", async({page})=>{
 /*
 Now lets create some test data inside TestData folder
 1. create auth.json file inside TestData folder
+2. lets add some utilities those can be reused inside utilities folder
 */

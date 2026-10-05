@@ -37,4 +37,36 @@ test("Test login with fixture", async({page, loginFixture})=>{
     await page.waitForTimeout(2000);
 })
 
+test("Login with JSON Data", async({page, loginWithJson})=>{
+    console.log("Login with JSON Data test executed...");
+    
+
+    await page.waitForTimeout(2000);
+})
+//To run any test case in slow motion add launchOptions: {slowMo:500} after video:'on',
 //now lets create next page ie inventory page
+
+//Explain this after explaining all 5 tests
+
+/*
+if you want to create a shortcuts for executing the tests or other commands those you 
+execute on terminal like npx playwright test ./tests/XXX
+you can create a script / shortcuts in package.jsone file inside script{} tag
+
+"scripts": {
+    "test": "npx playwright test",
+    "test:LoginPage": "npx playwright test .\\tests\\D01LoginPage.spec.js --headed",
+    "allure:generate": "npx allure generate allure-results --clean -o allure-report",
+    "allure:showReport": "npx allure open allure-report"
+  },
+
+  while executing simpally call
+  npm run test:LoginPage
+
+*/
+
+test.only("Login using CSV file", async({loginWithCSV, page})=>{
+    console.log("Login with csv file data...");
+    
+    await page.waitForTimeout(2000);
+})
