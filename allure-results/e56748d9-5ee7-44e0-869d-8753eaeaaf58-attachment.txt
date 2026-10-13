@@ -1,0 +1,4 @@
+Status: passed
+Title: Test for current status of TC
+Duration: 0
+Expected Status: passed

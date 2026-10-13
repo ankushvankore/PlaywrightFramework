@@ -1,0 +1,34 @@
+Understanding Git Integration
+1. Explain Git & GitHub
+2. Create New Git Repository
+3. Copy the address (link) and paste inside folder
+   Create a repository in folder (git init)
+4. git remote add origin <paste the url>
+5. Even you can do this via VS code
+6. Fire command on terminal
+    git init
+    git status
+    git add --a
+    git status
+    git commit -m "Framework"
+    (Please note that the code is still on the local repo)
+    git remote add origin <paste the code>
+    git push origin master
+    (Now check the git hub)
+
+Now we are suppose to run the code from GitHub
+For this purpose we need to add git actions
+For this we need to create .yaml file
+this file will help you to run the git commands (actions)
+this .yaml file is also treated as workflow
+Note that this will not see any UI rather you will get any report like
+this test case pass, this fail and will show some report if you have added in the .yaml file.
+
+Runner: 
+1. Inbuilt Runner will run on local machine
+2. Local runner - use local execution environment
+
+In Jenkins - you need to install some plug-ins but
+in GitHub no need to install any plugins rather all the plugins are pre-defined
+
+

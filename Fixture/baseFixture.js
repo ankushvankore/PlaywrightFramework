@@ -35,6 +35,26 @@ export const test = base.extend({
         await loginPage.directLogin(data[0].UserName, data[0].Password);
 
         await use(loginPage);
+    },
+
+    loginWithBaseURL: async({page, baseURL}, use)=>{
+        const loginPage = new LoginPage(page);
+        loginPage.goToWebApplication(baseURL);
+        loginPage.directLogin("standard_user", "secret_sauce");
+
+        use(loginPage);
+    },
+    page:async({page},use, testInfo)=>{
+        await use(page);
+        //The code after this will execute after every test case
+        //Only for every failed testcase we will capture screenshot
+
+        //exectedStatus is always pass
+        if(testInfo.status!=testInfo.expectedStatus){
+            const ssFile = await page.screenshot({path:`Screenshots/${testInfo.title}.png`});
+            await testInfo.attach('screenshot', {body:ssFile, contentType:'image/png'});
+            //This will attach the screenshot to the report
+        }
     }
 });
 

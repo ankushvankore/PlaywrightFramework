@@ -3,7 +3,7 @@ import { LoginPage } from "../Pages/LoginPage"
 //Add this line later and also comment 1st line later after creating fixture
 import {test, expect} from "../Fixture/baseFixture.js"
 
-test("Test for login with valid credtionals", async({page})=>{
+test("Test for login with valid credtionals @login, @smoke, @sanity", async({page})=>{
     let l1 = new LoginPage(page);
 
     l1.gotoLoginPage();
@@ -14,7 +14,7 @@ test("Test for login with valid credtionals", async({page})=>{
     await page.waitForTimeout(2000);
 })
 
-test("Login test for blank user name and password", async({page})=>{
+test("Login test for blank user name and password @login, @smoke", async({page})=>{
     let l1 = new LoginPage(page);
 
     l1.gotoLoginPage();
@@ -31,7 +31,7 @@ so rather calling those every time lets create a fixtire
 bassfixtrue.js
 */
 
-test("Test login with fixture", async({page, loginFixture})=>{
+test("Test login with fixture @smoke", async({page, loginFixture})=>{
     console.log("Test with fixtue get complited");
 
     await page.waitForTimeout(2000);
@@ -65,8 +65,64 @@ you can create a script / shortcuts in package.jsone file inside script{} tag
 
 */
 
-test.only("Login using CSV file", async({loginWithCSV, page})=>{
+test("Login using CSV file @sanity", async({loginWithCSV, page})=>{
     console.log("Login with csv file data...");
     
     await page.waitForTimeout(2000);
 })
+
+/*
+We can create multiple configuration files for multiple environments
+copy contents from your playwright.config.js file
+create a new file in same folder with name playwright.config.dev.js 
+inside this file paste the code and change the browser setup from this file to firefox
+
+you can do the same for other browsers too like edge, chrome, webkit etc
+just create a saperate files for each environment
+while executing call 
+npx playwright test tests/D01LoginPage.spec.js --headed --config=playwright.config.dev.js
+
+Even if you want you can add this command in package.json file as a shortcut as
+While executing call
+npm run test:dev
+
+This is called as Multi Environment Testing
+*/
+
+/*
+Using baseURL property from config file
+add baseURL: your URL
+IMP: purposly make these changes in playwright.config.dev.js file so that
+other files may not get distrubed
+
+in fixture add new fixture
+
+*/
+
+test("Login with baseUrl fixture @flicky", async({page, loginWithBaseURL})=>{
+
+})
+
+test("For taking the screenshot @smoke", async({page})=>{
+    let l1 = new LoginPage(page);
+
+    l1.gotoLoginPage();
+    l1.directLogin("standard_user", "secret_sauce123");
+    await page.waitForTimeout(2000);
+    expect (page).toHaveURL(/inventory/);
+
+    await page.waitForTimeout(2000);
+
+    await expect(page).toHaveURL(/inventory/);
+})
+
+/*
+Tags in Playwright
+This concept is same like tags in cucumber
+We can have multiple tags for every test case
+You need to add the tags in the title of test case
+Tags starts with @ and you can add anywhere in the title of test case
+For execution you need to use --grep "@tagName"
+Multiple Tags --grep "@tagName|@tagName" note - no @ before second tag
+For skip tags --grep-invert "@tagName"
+*/

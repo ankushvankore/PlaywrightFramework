@@ -49,4 +49,9 @@ export class LoginPage{
         let message = await this.#page.locator("h3[data-test='error']").innerText();
         return message;
     }
+
+    //Add this method at the time of showing baseURL concept
+    async goToWebApplication(url){
+        await this.#page.goto(url);
+    }
 }
