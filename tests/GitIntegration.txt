@@ -31,4 +31,6 @@ Runner:
 In Jenkins - you need to install some plug-ins but
 in GitHub no need to install any plugins rather all the plugins are pre-defined
 
+Copy and paste the contents from .yml file (from sample file in the folder)
+
 
