@@ -62,6 +62,16 @@ as --grep '@login'
 in the same .yml file
 change your node version to 24
 -----------------------
+in .yml file add 
+permissions:
+    contents: write
+
+after this code
+    publish-reports:
+  needs: test
+  runs-on: ubuntu-latest
+  if: always()
+  //Note- don't add this code, this code is already there
 
 
 Now open your Github page
@@ -74,7 +84,8 @@ Click on Read and Wright permissoin
 Save this (Click on Save button)
 
 Go to pages (In same Settings)
-Select the branch master (from branch option)
+Select the branch master (from branch option) 
+Click on Save button
 
 ---------------------
 
