@@ -33,4 +33,53 @@ in GitHub no need to install any plugins rather all the plugins are pre-defined
 
 Copy and paste the contents from .yml file (from sample file in the folder)
 
+Make the changes in this
+1. Change the test case name in Run Playwright Tests
+    run
+2. Change the repository name at the last
+
+Here we have just tried to execute the test and generate the allure report
+
+Changes to playwright.config.js file
+retries: process.env.CI ? 2 : 0
+comment this line
+
+in Html report configuration
+startServer: true => make it false
+
+after slowMo
+add following line
+headless:true
+
+
+-------------------
+now suppose we want to run only those test cases those are marked as @login
+then we will make a change in .yml file 
+as --grep='@login'
+
+----------------
+Now open your Github page
+and make following changes
+
+Click on Settings (Right on menu bar)
+Open actions
+Open General
+Click on Read and Wright permissoin
+Save this (Click on Save button)
+
+Go to pages (In same Settings)
+Select the branch master (from branch option)
+
+---------------------
+
+Now open the folder and then git bash
+git status
+git add .
+git status
+git commit -m "FrameworkUpdated"
+git push origin master
+
+-------------------
+
+Now you can check on Github that your action might be executing
 
