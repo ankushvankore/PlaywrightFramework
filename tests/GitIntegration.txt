@@ -58,6 +58,12 @@ then we will make a change in .yml file
 as --grep='@login'
 
 ----------------
+
+in the same .yml file
+change your node version to 24
+-----------------------
+
+
 Now open your Github page
 and make following changes
 
