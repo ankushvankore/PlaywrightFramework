@@ -1,0 +1,118 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: D05OverviewPage.spec.js >> Overview Test
+- Location: tests\D05OverviewPage.spec.js:14:5
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: locator('//button[text()=\'Add to cart\']') resolved to 6 elements:
+    1) <button id="add-to-cart-sauce-labs-backpack" name="add-to-cart-sauce-labs-backpack" data-test="add-to-cart-sauce-labs-backpack" class="btn btn_primary btn_small btn_inventory ">Add to cart</button> aka locator('[data-test="add-to-cart-sauce-labs-backpack"]')
+    2) <button id="add-to-cart-sauce-labs-bike-light" name="add-to-cart-sauce-labs-bike-light" data-test="add-to-cart-sauce-labs-bike-light" class="btn btn_primary btn_small btn_inventory ">Add to cart</button> aka locator('[data-test="add-to-cart-sauce-labs-bike-light"]')
+    3) <button id="add-to-cart-sauce-labs-bolt-t-shirt" name="add-to-cart-sauce-labs-bolt-t-shirt" data-test="add-to-cart-sauce-labs-bolt-t-shirt" class="btn btn_primary btn_small btn_inventory ">Add to cart</button> aka locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]')
+    4) <button id="add-to-cart-sauce-labs-fleece-jacket" name="add-to-cart-sauce-labs-fleece-jacket" class="btn btn_primary btn_small btn_inventory " data-test="add-to-cart-sauce-labs-fleece-jacket">Add to cart</button> aka locator('[data-test="add-to-cart-sauce-labs-fleece-jacket"]')
+    5) <button id="add-to-cart-sauce-labs-onesie" name="add-to-cart-sauce-labs-onesie" data-test="add-to-cart-sauce-labs-onesie" class="btn btn_primary btn_small btn_inventory ">Add to cart</button> aka locator('[data-test="add-to-cart-sauce-labs-onesie"]')
+    6) <button class="btn btn_primary btn_small btn_inventory " id="add-to-cart-test.allthethings()-t-shirt-(red)" name="add-to-cart-test.allthethings()-t-shirt-(red)" data-test="add-to-cart-test.allthethings()-t-shirt-(red)">Add to cart</button> aka locator('[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]')
+
+Call log:
+  - waiting for locator('//button[text()=\'Add to cart\']')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - button "Open Menu" [ref=e8] [cursor=pointer]
+          - img "Open Menu" [ref=e9]
+        - generic [ref=e10]: Swag Labs
+        - button "Cart, empty" [ref=e13]
+      - button "Back to products" [ref=e16] [cursor=pointer]
+    - main [ref=e17]:
+      - generic [ref=e19]:
+        - img "Sauce Labs Fleece Jacket" [ref=e21]
+        - generic [ref=e22]:
+          - generic [ref=e23]: Sauce Labs Fleece Jacket
+          - generic [ref=e24]: It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.
+          - generic [ref=e25]: $49.99
+          - button "Add to cart" [ref=e26] [cursor=pointer]
+  - contentinfo [ref=e27]:
+    - list [ref=e28]:
+      - listitem [ref=e29]:
+        - link "X" [ref=e30] [cursor=pointer]:
+          - /url: https://x.com/saucelabs
+      - listitem [ref=e31]:
+        - link "Facebook" [ref=e32] [cursor=pointer]:
+          - /url: https://www.facebook.com/saucelabs
+      - listitem [ref=e33]:
+        - link "LinkedIn" [ref=e34] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/sauce-labs/
+    - generic [ref=e35]: © 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy
+```
+
+# Test source
+
+```ts
+  1  | import { CartPage } from "./CartPage";
+  2  | 
+  3  | export class InventoryPage{
+  4  |     #page;
+  5  |     #allProducts;
+  6  |     #addToCartBtn;
+  7  |     #cartIcon;
+  8  | 
+  9  |     constructor(page){
+  10 |         this.#page = page;
+  11 |         this.#allProducts = this.#page.locator(".inventory_list .inventory_item_name");
+  12 |         this.#addToCartBtn = this.#page.locator("//button[text()='Add to cart']");
+  13 |         this.#cartIcon = this.#page.locator(".shopping_cart_link");
+  14 |     }
+  15 | 
+  16 |     async getTotalProductCount(){
+  17 |         let products = await this.#allProducts.all();
+  18 |         return await products.length;
+  19 |     }
+  20 | 
+  21 |     async getProductDetails(){
+  22 |         await this.#page.waitForTimeout(2000);
+  23 |         let products = await this.#allProducts.all();
+  24 |         for(let i of products)
+  25 |         {
+  26 |             console.log(await i.innerText());        
+  27 |         }
+  28 |     }
+  29 | 
+  30 |     async addToCart(pName){
+  31 |         await this.#page.waitForTimeout(2000);
+  32 |         let products = await this.#allProducts.all();
+  33 | 
+  34 |         for(let p of products){
+  35 |             if((await p.innerText()).includes(pName)){
+  36 |                 await p.click();
+  37 |                 break;
+  38 |             }
+  39 |         }
+  40 | 
+> 41 |         await this.#addToCartBtn.click();
+     |                                  ^ Error: locator.click: Error: strict mode violation: locator('//button[text()=\'Add to cart\']') resolved to 6 elements:
+  42 |         console.log("Product added to cart: " + pName);        
+  43 |     }
+  44 | 
+  45 |     async goToCartPage(){
+  46 |         await this.#cartIcon.click();
+  47 | 
+  48 |         //Navigate to cart page
+  49 |         return new CartPage(this.#page);
+  50 |     }
+  51 | }
+```

@@ -1,0 +1,9 @@
+Product added to cart: Sauce Labs Fleece Jacket
+Payment Information:
+SauceCard #31337
+Shipping Information:
+Free Pony Express Delivery!
+Price Total
+Item total: $49.99
+Tax: $4.00
+Total: $53.99
