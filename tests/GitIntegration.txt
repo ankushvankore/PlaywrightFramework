@@ -55,7 +55,7 @@ headless:true
 -------------------
 now suppose we want to run only those test cases those are marked as @login
 then we will make a change in .yml file 
-as --grep='@login'
+as --grep '@login'
 
 ----------------
 
