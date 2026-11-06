@@ -85,7 +85,7 @@ jobs:
     if: always()
 
     permissions:
-    contents: write
+      contents: write
 
     steps:
       # 1️⃣ Checkout repo
